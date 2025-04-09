@@ -46,3 +46,7 @@
 ## Partículas
 - Añadir efectos visuales para impactos, explosiones, recogida de power-ups.
 - Optimizar para rendimiento.
+
+
+
+Revisar el canal de canarydev tiene tutoriales de juegos en 2D para aprender en unity
