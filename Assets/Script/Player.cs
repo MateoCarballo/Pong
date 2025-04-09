@@ -1,70 +1,33 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    public bool player1; // This is set in the inspector
-    public float speed = 3f; // This is set in the inspector
+    public float speed = 5f; // This is set in the inspector
     public Rigidbody2D rb; // This is set in the inspector
+    private float verticalInput = 0f;
+    private Vector2 startPos; // Represents the initial transform position of the gameobject
 
-    private float movement = 0f; // This is set in the inspector
-    private Vector2 startPos; // This is set in the inspector
-
-    public float moveSpeedTouch = 0.03f; // This is set in the inspector
-
-    // Start is called before the first frame update
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         startPos = transform.position;
     }
 
-    // Update is called once per frame
+    public bool isPlayerLeft = true; // This is set in the inspector
+
     void Update()
     {
-        if (player1)
+        if (isPlayerLeft)
         {
-            if (Input.GetMouseButton(0)) // Controls the player with the mouse and in touch screen
-            {
-                Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition); // Get the mouse position in the world
-                if (mousePosition.x < 1) // If the mouse is in the right half of the screen
-                {
-                    if (mousePosition.y > 0.5) // If the mouse is in the top half of the screen
-                    {
-                        transform.Translate(Vector3.up * moveSpeedTouch); // Move the player up
-                    }
-                    else if (mousePosition.y < 0.5)
-                    {
-                        transform.Translate(Vector3.down * moveSpeedTouch); // Move the player up
-                    }
-                }
-            }
-            movement = Input.GetAxisRaw("Vertical2");
+            verticalInput = Input.GetAxisRaw("VerticalLeft");
         }
         else
         {
-            if (Input.GetMouseButton(0)) // Controls the player with the mouse and in touch screen
-            {
-                Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition); // Get the mouse position in the world
-                if (mousePosition.x > 1) // If the mouse is in the right half of the screen
-                {
-                    if (mousePosition.y > 0.5) // If the mouse is in the top half of the screen
-                    {
-                        transform.Translate(Vector3.up * moveSpeedTouch); // Move the player up
-                    }
-                    else if (mousePosition.y < 0.5)
-                    {
-                        transform.Translate(Vector3.down * moveSpeedTouch); // Move the player up
-                    }
-                }
-            }
-            movement = Input.GetAxisRaw("Vertical");
+            verticalInput = Input.GetAxisRaw("VerticalRight");
         }
-
-        rb.linearVelocity = new Vector2(rb.linearVelocity.x, movement * speed); // Move the player up or down
+        rb.linearVelocity = new Vector2(rb.linearVelocity.x, verticalInput * speed);
     }
 
-    // Reset the player to the starting position
     public void Reset()
     {
         rb.linearVelocity = Vector2.zero;

@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 3
   tags:
   - Pelota0
+  - Ball
   layers:
   - Default
   - TransparentFX

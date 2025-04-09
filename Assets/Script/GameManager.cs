@@ -1,33 +1,32 @@
-using Unity.VisualScripting;
 using UnityEngine;
 
-public class GameManager: MonoBehaviour
+public class GameManager : MonoBehaviour
 {
-    public GameObject pelota, player1, player2; //Referencia a los objetos de la escena
-    public int player1Score, player2Score; //Puntuaciones de cada jugador
-    public TMPro.TextMeshProUGUI player1ScoreText, player2ScoreText;
-    public void goalScored(int playerNumber)
+    public GameObject ball, playerLeft, playerRight;
+    public int leftPlayerScore, rightPlayerScore;
+    public TMPro.TextMeshProUGUI playerLeftScoreText, playerRightScoreText;
+
+    // This method is called when the ball enters the goal area (the trigger collider)
+    public void GoalScored(bool isPlayerLeft)
     {
-        if (playerNumber == 1)
+        if (isPlayerLeft)
         {
-            player1Score++;
-            player1ScoreText.text = player1Score.ToString();
+            leftPlayerScore++;
+            playerLeftScoreText.text = leftPlayerScore.ToString();
         }
-        else if (playerNumber == 2)
+        else
         {
-            {
-                player2Score++;
-                player2ScoreText.text = player1Score.ToString();
-            }
-        } 
-        ResetPosition();
+            rightPlayerScore++;
+            playerRightScoreText.text = rightPlayerScore.ToString();
+        }
+        ReserPositions();
     }
-    private void ResetPosition()
+
+    // This method is called to reset the ball and players to their starting positions
+    private void ReserPositions()
     {
-        pelota.GetComponent<Ball>().Reset();
-        player1.GetComponent<Player>().Reset();
-        player2.GetComponent<Player>().Reset();
-
+        ball.GetComponent<Ball>().Reset();
+        playerLeft.GetComponent<Player>().Reset();
+        playerRight.GetComponent<Player>().Reset();
     }
-
 }
