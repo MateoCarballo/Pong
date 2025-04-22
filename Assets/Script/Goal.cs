@@ -10,11 +10,11 @@ public class Goal : MonoBehaviour
         {
             if (isPlayer1Goal)
             {
-                FindFirstObjectByType<GameManager>().goalScored(1);
+                FindFirstObjectByType<GameManager>().GoalScored(true);
             }
             else
             {
-                FindFirstObjectByType<GameManager>().goalScored(2);
+                FindFirstObjectByType<GameManager>().GoalScored(false);
             }
         }
     }

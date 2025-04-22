@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    public bool isPlayerLeft = true;
     public float speed = 5f; // This is set in the inspector
     public Rigidbody2D rb; // This is set in the inspector
     private float verticalInput = 0f;
@@ -12,8 +13,6 @@ public class Player : MonoBehaviour
     {
         startPos = transform.position;
     }
-
-    public bool isPlayerLeft = true; // This is set in the inspector
 
     void Update()
     {
