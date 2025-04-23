@@ -17,10 +17,21 @@ public class IA : MonoBehaviour
 
     public void Movement()
     {
-        if (transform.position.y > ball.transform.position.y)
+        //Si meto esto hago que solo se mueva cuando la pelota este en el campo de la IA
+        //Otra opcion seria ver que se esté moviendo hacia el jugador para no seguirla todo el rato
+        if (ball.GetComponent<Rigidbody2D>().linearVelocityX > 0)
         {
-            transform.Translate(Vector2.down * speed * Time.deltaTime);
-            //Tambien podriamos: transform.position += 
+            if (transform.position.y > ball.transform.position.y)
+            {
+                transform.Translate(Vector2.down * speed * Time.deltaTime);
+                //Tambien podriamos: transform.position += 
+            }
+
+            if (transform.position.y < ball.transform.position.y)
+            {
+                transform.Translate(Vector2.up * speed * Time.deltaTime);
+                //Tambien podriamos: transform.position += 
+            }
         }
     }
 }

@@ -6,6 +6,8 @@ public class GameManager : MonoBehaviour
     public int leftPlayerScore, rightPlayerScore;
     public TMPro.TextMeshProUGUI playerLeftScoreText, playerRightScoreText;
 
+
+
     // This method is called when the ball enters the goal area (the trigger collider)
     public void GoalScored(bool isPlayerLeft)
     {
